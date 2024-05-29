@@ -1,69 +1,56 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Lista de Usuários</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-row>
-      <ion-col size="3">
-        <ion-item>
-          <ion-input
-            label="Name" labelPlacement="stacked"
-            placeholder="Nome:" [(ngModel)]="newUserName"
-          >
-          </ion-input>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <ion-item lines="full">
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input placeholder="Nome" [(ngModel)]="newUserName"></ion-input>
         </ion-item>
       </ion-col>
-
-      <ion-col size="3">
-        <ion-item>
-          <ion-input
-            label="Cidade" labelPlacement="stacked"
-            placeholder="Cidade:" [(ngModel)]="newUserCidade"
-          >
-          </ion-input>
+      <ion-col size="12" size-md="4">
+        <ion-item lines="full">
+          <ion-label position="stacked">Cidade</ion-label>
+          <ion-input placeholder="Cidade" [(ngModel)]="newUserCidade"></ion-input>
         </ion-item>
       </ion-col>
-
-      <ion-col size="3">
-        <ion-item>
-          <ion-input
-            label="Email" labelPlacement="stacked"
-            placeholder="Email:" [(ngModel)]="newUserEmail"
-          >
-          </ion-input>
+      <ion-col size="12" size-md="4">
+        <ion-item lines="full">
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input placeholder="Email" [(ngModel)]="newUserEmail"></ion-input>
         </ion-item>
       </ion-col>
-
-      <ion-col size="3">
-        <ion-button
-          (click)="createUser()" expand="block" fill="outline">
-          <ion-icon name="add" slot="icon-only"></ion-icon>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button expand="block" fill="outline" (click)="createUser()">
+          <ion-icon name="add" slot="start"></ion-icon>
+          Adicionar Usuário
         </ion-button>
       </ion-col>
-  </ion-row>
+    </ion-row>
+  </ion-grid>
 
-  <ion-item *ngFor="let user of userList">
-      <ion-checkbox
-      aria-label="Label"
-      slot="start"
-      [ngModel]="user.active"
-      (ionChange)="updateUser(user)" >
-      </ion-checkbox>
-
-      <div *ngIf="!user.isEditing">
-        <span>{{ user.id }} - {{ user.name }} - {{ user.cidade }} - {{ user.email }} - {{ user.active }}</span>
-      </div>
-
-      <div *ngIf="user.isEditing">
-        <ion-input [(ngModel)]="user.editName" placeholder="Name"></ion-input>
-        <ion-input [(ngModel)]="user.editCidade" placeholder="Cidade"></ion-input>
-        <ion-input [(ngModel)]="user.editEmail" placeholder="Email"></ion-input>
-      </div>
-
-      <ion-button slot="end" (click)="user.isEditing ? saveUser(user) : editUser(user)" fill="clear" color="primary">
-        <ion-icon [name]="user.isEditing ? 'save' : 'create'" slot="icon-only"></ion-icon>
-      </ion-button>
-
-      <ion-button slot="end" (click)="deleteUser(user)" fill="clear" color="danger">
-        <ion-icon name="trash" slot="icon-only"></ion-icon>
-      </ion-button>
-  </ion-item>
-
+  <ion-list>
+    <ion-item *ngFor="let user of userList" lines="full">
+      <ion-label>
+        <h2>{{ user.name }}</h2>
+        <p>Cidade: {{ user.cidade }}</p>
+        <p>Email: {{ user.email }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" color="primary" (click)="user.isEditing ? saveUser(user) : editUser(user)">
+          <ion-icon [name]="user.isEditing ? 'save' : 'create'"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="deleteUser(user)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
 </ion-content>
