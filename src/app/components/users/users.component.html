@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Lista de Usuários</ion-title>
+    <ion-title class="ion-text-center">Lista de Usuários</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,26 +9,26 @@
     <ion-row>
       <ion-col size="12" size-md="4">
         <ion-item lines="full">
-          <ion-label position="stacked">Nome</ion-label>
+          <ion-label position="stacked" color="primary">Nome</ion-label>
           <ion-input placeholder="Nome" [(ngModel)]="newUserName"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="12" size-md="4">
         <ion-item lines="full">
-          <ion-label position="stacked">Cidade</ion-label>
+          <ion-label position="stacked" color="primary">Cidade</ion-label>
           <ion-input placeholder="Cidade" [(ngModel)]="newUserCidade"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="12" size-md="4">
         <ion-item lines="full">
-          <ion-label position="stacked">Email</ion-label>
+          <ion-label position="stacked" color="primary">Email</ion-label>
           <ion-input placeholder="Email" [(ngModel)]="newUserEmail"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12" class="ion-text-center">
-        <ion-button expand="block" fill="outline" (click)="createUser()">
+        <ion-button expand="block" color="secondary" (click)="createUser()">
           <ion-icon name="add" slot="start"></ion-icon>
           Adicionar Usuário
         </ion-button>
@@ -38,7 +38,7 @@
 
   <ion-list>
     <ion-item *ngFor="let user of userList" lines="full">
-      <ion-label *ngIf="!user.isEditing">
+      <ion-label *ngIf="!user.isEditing" color="tertiary">
         <h2>{{ user.name }}</h2>
         <p>Cidade: {{ user.cidade }}</p>
         <p>Email: {{ user.email }}</p>
@@ -47,7 +47,7 @@
       <ion-input *ngIf="user.isEditing" placeholder="Cidade" [(ngModel)]="user.editCidade"></ion-input>
       <ion-input *ngIf="user.isEditing" placeholder="Email" [(ngModel)]="user.editEmail"></ion-input>
       <ion-buttons slot="end">
-        <ion-button fill="clear" color="primary" (click)="user.isEditing ? saveUser(user) : editUser(user)">
+        <ion-button fill="clear" color="warning" (click)="user.isEditing ? saveUser(user) : editUser(user)">
           <ion-icon [name]="user.isEditing ? 'save' : 'create'"></ion-icon>
         </ion-button>
         <ion-button fill="clear" color="danger" (click)="deleteUser(user)">
