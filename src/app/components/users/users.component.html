@@ -38,11 +38,14 @@
 
   <ion-list>
     <ion-item *ngFor="let user of userList" lines="full">
-      <ion-label>
+      <ion-label *ngIf="!user.isEditing">
         <h2>{{ user.name }}</h2>
         <p>Cidade: {{ user.cidade }}</p>
         <p>Email: {{ user.email }}</p>
       </ion-label>
+      <ion-input *ngIf="user.isEditing" placeholder="Nome" [(ngModel)]="user.editName"></ion-input>
+      <ion-input *ngIf="user.isEditing" placeholder="Cidade" [(ngModel)]="user.editCidade"></ion-input>
+      <ion-input *ngIf="user.isEditing" placeholder="Email" [(ngModel)]="user.editEmail"></ion-input>
       <ion-buttons slot="end">
         <ion-button fill="clear" color="primary" (click)="user.isEditing ? saveUser(user) : editUser(user)">
           <ion-icon [name]="user.isEditing ? 'save' : 'create'"></ion-icon>
